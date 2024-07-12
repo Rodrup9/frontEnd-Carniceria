@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    /* background-color: ; */
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    width: max-content;
+    max-width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 5px; /* Cambia este valor al ancho deseado */
+}
+
+/* Estilo de la pista de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+    background: #F0F0F0; /* Color de fondo de la pista */
+    border-radius: 15px;
+}
+
+/* Estilo del pulgar de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+    background: #267365; /* Color del pulgar */
+    border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    cursor:grab;
+}
+
+.contentMetNone {
+    background-color: #EEEDF2;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentMet {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 50px;
+    width: 75%;
+    height: 85%;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.contentMetHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.mets {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;  
+    padding-right: 10px;
+    overflow-y: scroll;
+}
+
+.targgetMet {
+    width: 90px;
+    background-color: #F0F0F0;
+    padding: 30px;
+    border-radius: 15px;
+    box-sizing: content-box;
+    transition: all 200ms;
+    cursor: pointer;
+}
+
+.targgetMet:hover {
+    background-color: #EBE0D5;
+}
+
+.targgetMet h2 {
+    font-size: 14px;
+}
+
+.targgetMet p {
+    font-size: 14px;
+}
+
+.targgetMetSelect {
+    background-color: #EBE0D5;
+}
+
+.seeker {
+    display: flex;
+    align-items: center;
+}
+
+.seeker input {
+    width: 400px;
+    border: none;
+    border-bottom: 1px solid #267365;
+    font-size: 14px;
+    padding: 5px 15px;
+    transition: all 400ms;
+}
+
+.seeker input:focus {
+    width: 450px;
+}
+
+.seeker input::placeholder {
+    color: #267365;
+}
+
+.seeker button {
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.seeker button i {
+    font-size: 20px;
+    color: #267365;
+}
+
+input:focus {
+    outline: none;
+}
+
+.closeX {
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.closeX i {
+    font-size: 28px;
+    transition: 200ms;
+}
+
+.closeX:hover i {
+    color: #BA2222;
+}

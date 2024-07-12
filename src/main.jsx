@@ -1,10 +1,12 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import ReactDOM from 'react-dom/client';
+import { ContentMet } from './contentMet/ContentMet';
+import './main.css'
+import { mets } from './mets';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <React.StrictMode>
+        <ContentMet mets={mets} />
+        {/* <TarggetMet mets={ {image: "src", name: 'Carne Molida', price: 23, gram: 'kg'} } /> */}
+    </React.StrictMode>,
 )
