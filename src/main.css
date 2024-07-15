@@ -64,12 +64,36 @@ img {
     gap: 20px;
     flex-direction: column;
     border-radius: 15px;
-    padding: 50px;
-    width: 75%;
-    height: 85%;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
     background-color: #ffffff;
     box-sizing: border-box;
     overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .contentMet {
+        width: 95%;
+        height: 85%;
+        padding: 30px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .contentMet {
+        width: 75%;
+        height: 91%;
+        padding: 50px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .contentMet {
+        width: 75%;
+        height: 85%;
+        padding: 50px;
+    }
 }
 
 .contentMetHeader{
@@ -79,10 +103,31 @@ img {
 
 .mets {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 20px;  
-    padding-right: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 20px;
     overflow-y: scroll;
+    overflow-x: hidden;
+    justify-items: center;
+    padding-right: 5px;
+}
+
+@media (min-width: 768px) {
+    .mets {
+        grid-template-columns: repeat(4, 1fr);
+        padding-right: 10px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .mets {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (min-width: 1440px) {
+    .mets {
+        grid-template-columns: repeat(6, 1fr);
+    }
 }
 
 .targgetMet {
@@ -117,7 +162,7 @@ img {
 }
 
 .seeker input {
-    width: 400px;
+    width: 200px;
     border: none;
     border-bottom: 1px solid #267365;
     font-size: 14px;
@@ -125,8 +170,20 @@ img {
     transition: all 400ms;
 }
 
+@media (min-width: 768px) {
+    .seeker input {
+        width: 400px;
+    }
+}
+
 .seeker input:focus {
-    width: 450px;
+    width: 250px;
+}
+
+@media (min-width: 768px) {
+    .seeker input:focus {
+        width: 450px;
+    }
 }
 
 .seeker input::placeholder {
