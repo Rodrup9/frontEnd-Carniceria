@@ -62,82 +62,82 @@ export const mets = [
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 72
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 91
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 13
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 31
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 72
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 46
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 75
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 9
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 53
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 16
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 26
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 34
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 86
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 233
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 245
     },
     {
         image: '../public/pngwing.com.png',
         name: 'Cuerito',
-        price: 23
+        price: 13
     },
     
 ]
