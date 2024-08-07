@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ButtonConfirm, ButtonDeleteV2, OutputCost, OutputDetails, OutputTotal, OutputWeight } from './';
 import { MetContext } from "./context/metContext";
+import { PesoComponent } from "../helpers";
 
 const cal = (amount, price) => {
     return (amount * price).toFixed(2);
@@ -13,6 +14,12 @@ export const NoteMet = () => {
     // const [total, setTotal] = useState();
 
     const { noteProduct, total, amount, cost, setCost } = useContext( MetContext );
+    const { mostrarPeso } = PesoComponent();
+
+    useEffect(() => {
+        mostrarPeso();
+    }, [])
+    
 
     useEffect(() => {
         setCost( cal(amount, noteProduct.price) );

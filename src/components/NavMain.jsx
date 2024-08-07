@@ -1,4 +1,4 @@
-import { ButtonCart, ButtonConfirm, ButtonDelete } from "./"
+import { ButtonCart, ButtonConfirmV2, ButtonDelete } from "./"
 
 export const NavMain = () => {
 
@@ -8,7 +8,7 @@ export const NavMain = () => {
     <div className="navMain">
         <div>
             <ButtonCart label={'Añadir'} />
-            <ButtonConfirm label={'Terminar'} />
+            <ButtonConfirmV2 label={'Terminar'} />
         </div>
         <div>
             <ButtonDelete label={'Eliminar'} />    

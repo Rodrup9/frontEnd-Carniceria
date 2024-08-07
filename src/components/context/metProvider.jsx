@@ -15,8 +15,12 @@ export const MetProvider = ({ children }) => {
 
     const [total, setTotal] = useState(0.00);
 
+    const [loading, setLoading] = useState(false);
+
+    const [alert, setAlert] = useState([])
+
     return (
-        <MetContext.Provider value={{ screenMet, setscreenMet, products, setProducts, noteProduct, setNoteProduct, total, setTotal, amount, setAmount, cost, setCost }}>
+        <MetContext.Provider value={{ alert, setAlert, loading, setLoading, screenMet, setscreenMet, products, setProducts, noteProduct, setNoteProduct, total, setTotal, amount, setAmount, cost, setCost }}>
             { children }
         </MetContext.Provider>
     )

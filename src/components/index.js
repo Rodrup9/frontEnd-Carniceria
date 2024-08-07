@@ -16,3 +16,6 @@ export * from './OutputCost';
 export * from './OutputDetails';
 export * from './OutputTotal';
 export * from './MainMain';
+export * from './ButtonConfirmV2';
+export * from './ContentAlerts';
+export * from './Alert';

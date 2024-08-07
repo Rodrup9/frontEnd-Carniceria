@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { separatePoint } from "../helpers"
 import { useNewSeparate } from "../hooks";
 
@@ -5,6 +6,10 @@ export const OutputTotal = ({total = 0}) => {
 
     const { first, second } = separatePoint(total);
     const { firstState, secondState, onNewValue } = useNewSeparate(first, second);
+
+    useEffect(() => {
+        onNewValue(total);
+    }, [total])
 
     return (
         <div className="outputTotalBody">

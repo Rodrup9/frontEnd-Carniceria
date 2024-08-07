@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { MetContext } from "./context/metContext";
 
-export const TarggetMet = ( {met:{ image, name, price} } ) => {
+export const TarggetMet = ( {met:{ id, image, name, price} } ) => {
 
     const [clase, setClase] = useState(['targgetMet']);
     const onSelect = (event) => {
@@ -17,7 +17,8 @@ export const TarggetMet = ( {met:{ image, name, price} } ) => {
         setNoteProduct({
             name,
             price,
-            des: 0
+            des: 0,
+            id,
         })
     }
 
