@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { MetContext } from "./context/metContext";
 
-export const TarggetMet = ( {met:{ image, name, price}, handleShowMets, handleNote } ) => {
+export const TarggetMet = ( {met:{ image, name, price} } ) => {
 
     const [clase, setClase] = useState(['targgetMet']);
     const onSelect = (event) => {
@@ -8,10 +9,16 @@ export const TarggetMet = ( {met:{ image, name, price}, handleShowMets, handleNo
         // console.log(clase)
     }
 
+    const { setscreenMet, setNoteProduct } = useContext( MetContext );
+
     const hanldeSelect = () => {
         onSelect();
-        handleShowMets();
-        handleNote(price, name);
+        setscreenMet(false);
+        setNoteProduct({
+            name,
+            price,
+            des: 0
+        })
     }
 
     return (

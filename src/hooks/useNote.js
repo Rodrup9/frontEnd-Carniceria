@@ -1,22 +1,22 @@
-import { useState } from "react"
+// import { useContext, useState } from "react"
 
-export const useNote = () => {
+// export const useNote = () => {
 
-    const [note, setNote] = useState({ price: 0, name: '', des: 0 })
+//     const first = useContext(second)
 
-    const handleNote = ( price, name, des = 0 ) => {
-        setNote({
-            ...note,
-            price,
-            name,
-            des, 
-        })
-    }
+//     const handleNote = ( price, name, des = 0 ) => {
+//         setNote({
+//             ...note,
+//             price,
+//             name,
+//             des, 
+//         })
+//     }
 
-    return (
-        {
-            note,
-            handleNote,
-        }
-    )
-}
+//     return (
+//         {
+//             note,
+//             handleNote,
+//         }
+//     )
+// }

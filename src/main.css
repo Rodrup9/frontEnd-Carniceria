@@ -356,3 +356,48 @@ input:focus {
 .noteMetButtons{
     padding-bottom: 30px;
 }
+
+.boxMain {
+    display: flex;
+    gap: 30px;
+}
+
+.boxMainNotes {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.minBoxProductAdded {
+    width: 282px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.minBoxProductAdded div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.minBoxProductAdded h3 {
+    line-height: 1.2;
+    padding: 0;
+    margin: 0;
+}
+
+.minBoxProductAdded button {
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.minBoxProductAdded i {
+    color: #08070A;
+    font-size: 24px;
+}
+
+.minBoxProductAdded p {
+    font-weight: 600;
+}

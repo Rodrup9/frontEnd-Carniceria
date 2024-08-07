@@ -4,6 +4,8 @@ import { useNewSeparate } from "../hooks";
 
 export const OutputCost = ({ cost }) => {
 
+   
+
     const { first, second } = separatePoint(cost);
 
     const { firstState, secondState, onNewValue } = useNewSeparate(first, second);

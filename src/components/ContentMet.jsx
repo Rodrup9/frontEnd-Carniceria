@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TarggetMet, Seeker, CloseX } from './';
 
-export const ContentMet = ({mets, handleShowMets, handleNote}) => {
+export const ContentMet = ({mets}) => {
     // const [first, setfirst] = useState(second)
     
   return (
@@ -10,10 +10,10 @@ export const ContentMet = ({mets, handleShowMets, handleNote}) => {
         <div className="contentMet">
             <div className="contentMetHeader">
                 <Seeker />
-                <CloseX handleShowMets={ handleShowMets } />
+                <CloseX />
             </div>
             <div className="mets">
-                { mets.map(met => <TarggetMet handleNote={ handleNote } handleShowMets={ handleShowMets } met={met} />) }
+                { mets.map(met => <TarggetMet key={ met.id } met={met} />) }
             </div>
         </div>
     </div>

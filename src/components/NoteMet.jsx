@@ -1,23 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ButtonConfirm, ButtonDeleteV2, OutputCost, OutputDetails, OutputTotal, OutputWeight } from './';
+import { MetContext } from "./context/metContext";
 
 const cal = (amount, price) => {
     return (amount * price).toFixed(2);
 }
 
-export const NoteMet = ({ note }) => {
+export const NoteMet = () => {
 
-    const [order, setOrder] = useState(78298)
-    const [amount, setAmount] = useState(24.45);
-    const [cost, setCost] = useState(0.00);
-    // const [order, setOrder] = useState();
-    const [total, setTotal] = useState();
+    // const [order, setOrder] = useState(78298)
+    // // const [order, setOrder] = useState();
+    // const [total, setTotal] = useState();
+
+    const { noteProduct, total, amount, cost, setCost } = useContext( MetContext );
 
     useEffect(() => {
-        // console.log(cal(amount, note.price));
-        setCost( cal(amount, note.price) );
-        console.log(cost)
-    }, [note])
+        setCost( cal(amount, noteProduct.price) );
+    }, [noteProduct])
     
 
     return (
@@ -25,12 +24,12 @@ export const NoteMet = ({ note }) => {
 
             <OutputWeight num={ amount } />
             <OutputCost cost={ cost } />
-            <OutputDetails note={ note } />
+            <OutputDetails note={ noteProduct } />
 
             <OutputTotal total={ total } />
 
             <div className="noteMetOrder">
-                <p> Orden: { order } </p>
+                <p> Orden: { 'order' } </p>
             </div>
 
             <div className="noteMetButtons">

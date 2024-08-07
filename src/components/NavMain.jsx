@@ -1,13 +1,13 @@
 import { ButtonCart, ButtonConfirm, ButtonDelete } from "./"
 
-export const NavMain = ({ handleShowMets }) => {
+export const NavMain = () => {
 
 
 
   return (
     <div className="navMain">
         <div>
-            <ButtonCart handleShowMets={ handleShowMets } label={'Añadir'} />
+            <ButtonCart label={'Añadir'} />
             <ButtonConfirm label={'Terminar'} />
         </div>
         <div>

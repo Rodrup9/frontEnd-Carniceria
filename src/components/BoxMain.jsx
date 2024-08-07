@@ -1,17 +1,20 @@
-import { useNote } from "../hooks"
+import { useContext } from "react"
 import {  MinBoxProductAdded, NoteMet } from "./"
+import { MetContext } from "./context/metContext"
 
-export const BoxMain = ({products, note, handleNote}) => {
+export const BoxMain = () => {
+
+    const { products } = useContext( MetContext );
 
     return (
         <div className="boxMain">
 
-            <NoteMet note={ note } handleNote={ handleNote } />
+            <NoteMet />
             
             <div className="boxMainNotes">
-                { products.map( product => (
-                    <MinBoxProductAdded key={ Date() * 3 } {...product} />
-                ) ) }
+                { 
+                    products.map( product => <MinBoxProductAdded key={ product.id} data={product} /> ) 
+                }
             </div>
         </div>
     )

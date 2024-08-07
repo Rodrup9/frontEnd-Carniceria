@@ -1,28 +1,23 @@
 import { BoxMain } from "./BoxMain";
 import { NavMain } from "./NavMain";
-import { toggleBoxMet } from "../helpers";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ContentMet } from "./ContentMet";
 import { mets } from "../mets";
-import { useNote } from "../hooks";
+import { MetContext } from "./context/metContext";
 
 export const MainMain = () => {
 
-    const [products, setProducts] = useState([]);
-
-    const { showMets, handleShowMets } = toggleBoxMet();
-
-    const { note, handleNote } = useNote();
+    const { screenMet } = useContext( MetContext )
 
     return (
         <>
 
             {
-                showMets &&  <ContentMet handleNote={ handleNote } handleShowMets={ handleShowMets } mets={ mets } />
+                screenMet &&  <ContentMet mets={ mets } />
             }
 
-            <NavMain handleShowMets={ handleShowMets } />
-            <BoxMain products={ products } note={ note } handleNote={ handleNote } />
+            <NavMain />
+            <BoxMain />
         </>
     )
 }
