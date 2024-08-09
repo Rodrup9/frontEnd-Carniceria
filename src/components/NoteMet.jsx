@@ -8,41 +8,26 @@ const cal = (amount, price) => {
 }
 
 export const NoteMet = () => {
-
-    // const [order, setOrder] = useState(78298)
-    // // const [order, setOrder] = useState();
-    // const [total, setTotal] = useState();
-
-    const { noteProduct, total, amount, cost, setCost } = useContext( MetContext );
-    const { mostrarPeso } = PesoComponent();
+    const { noteProduct, total, amount, cost, setCost } = useContext(MetContext);
 
     useEffect(() => {
-        mostrarPeso();
-    }, [])
-    
-
-    useEffect(() => {
-        setCost( cal(amount, noteProduct.price) );
-    }, [noteProduct])
-    
+        setCost(cal(amount, noteProduct.price));
+    }, [noteProduct, amount, setCost]);
 
     return (
         <div className="noteMet">
-
-            <OutputWeight num={ amount } />
-            <OutputCost cost={ cost } />
-            <OutputDetails note={ noteProduct } />
-
-            <OutputTotal total={ total } />
-
+            <PesoComponent />
+            <OutputWeight num={amount} />
+            <OutputCost cost={cost} />
+            <OutputDetails note={noteProduct} />
+            <OutputTotal total={total} />
             <div className="noteMetOrder">
                 <p> Orden: { 'order' } </p>
             </div>
-
             <div className="noteMetButtons">
-                <ButtonDeleteV2 label={'Limpiar'} />  
+                <ButtonDeleteV2 label={'Limpiar'} />
                 <ButtonConfirm label={'Confirmar'} />
             </div>
         </div>
-    )
-}
+    );
+};
