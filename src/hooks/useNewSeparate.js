@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { separatePoint } from "../helpers";
 
-export const useNewSeparate = ( first = '0', second = '00' ) => {
-    const [firstState, setFirst] = useState(first);
-    const [secondState, setSecond] = useState(second);
+export const useNewSeparate = () => {
+    const [firstState, setFirst] = useState('0');
+    const [secondState, setSecond] = useState('00');
     
     const onNewValue = ( num ) => {
         const { first, second } = separatePoint(num);

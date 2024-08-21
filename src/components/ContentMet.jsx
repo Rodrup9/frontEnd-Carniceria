@@ -1,21 +1,40 @@
-import { useState } from "react";
-import { TarggetMet, Seeker, CloseX } from './';
+import { useContext, useEffect, useState } from "react";
+import { TarggetMet, Seeker, CloseX, ButtonDouble } from './';
+import { MetContext } from "./context/metContext";
 
-export const ContentMet = ({mets}) => {
+export const ContentMet = () => {
     // const [first, setfirst] = useState(second)
-    
-  return (
-    <div className="contentMetNone">
+    const { kg, piece, filter, show, setShow } = useContext( MetContext );
+    console.log(kg)
 
-        <div className="contentMet">
-            <div className="contentMetHeader">
-                <Seeker />
-                <CloseX />
-            </div>
-            <div className="mets">
-                { mets.map(met => <TarggetMet key={ met.id } met={met} />) }
+    useEffect(() => {
+
+        if ( filter === 'one' ) {
+            setShow(kg)
+        } else if ( filter === 'two' ) {
+            setShow(piece)
+        } else {
+            setShow(kg)
+        }
+        
+    }, [filter])
+    
+    
+    return (
+        <div className="contentMetNone">
+
+            <div className="contentMet">
+                <div className="contentMetHeader">
+                    {/* <Seeker /> */}
+                    <div className="contentMetoptions">
+                        <ButtonDouble />
+                    </div>
+                    <CloseX />
+                </div>
+                <div className="mets">
+                    { show.map( item => <TarggetMet key={ item.id } met={item} />) }
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }

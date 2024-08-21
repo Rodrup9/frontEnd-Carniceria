@@ -469,3 +469,38 @@ input:focus {
     background-color: #d70000;
     color: #ffffff;
 }
+
+.buttonDouble {
+    background-color: #F0F0F0;
+    display: flex;
+    align-items: stretch;
+    padding: 0;
+    gap: 0;
+    border: 2px solid #267365;
+    width: 150px;
+    height: 45px;
+}
+
+.buttonDoubleBtn {
+    /* padding: 10px 10px; */
+    flex: 1;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 100ms;
+}
+
+.buttonDoubleOne {
+    flex: 1.1;
+}
+
+/* .buttonDoubleTwo {
+
+} */
+
+.buttonDoubleActive {
+    background-color: #267365;
+    color: #ffffff;
+    flex: 1.5;
+}

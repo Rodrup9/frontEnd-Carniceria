@@ -15,7 +15,6 @@ export const NoteMet = () => {
 
     const { noteProduct, total, amount, cost, setCost } = useContext( MetContext );
     const { mostrarPeso } = PesoComponent();
-
     useEffect(() => {
         mostrarPeso();
     }, [])
@@ -23,8 +22,7 @@ export const NoteMet = () => {
 
     useEffect(() => {
         setCost( cal(amount, noteProduct.price) );
-    }, [noteProduct])
-    
+    }, [noteProduct])    
 
     return (
         <div className="noteMet">

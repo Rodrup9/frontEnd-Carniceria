@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { separatePoint } from "../helpers"
 import { useNewSeparate } from "../hooks";
+import { MetContext } from "./context/metContext";
 
-export const OutputTotal = ({total = 0}) => {
+export const OutputTotal = () => {
 
-    const { first, second } = separatePoint(total);
-    const { firstState, secondState, onNewValue } = useNewSeparate(first, second);
+    const { total } = useContext( MetContext );
+    const { firstState, secondState, onNewValue } = useNewSeparate();
 
     useEffect(() => {
+        localStorage.setItem('total', total);
         onNewValue(total);
     }, [total])
 
