@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { ButtonConfirm, ButtonDeleteV2, OutputCost, OutputDetails, OutputTotal, OutputWeight } from './';
 import { MetContext } from "./context/metContext";
 import { PesoComponent } from "../helpers";
-
+import { ReconnectButton } from './reconectar'
 const cal = (amount, price) => {
     return (amount * price).toFixed(2);
 }
@@ -16,6 +16,7 @@ export const NoteMet = () => {
 
     return (
         <div className="noteMet">
+
             <PesoComponent />
             <OutputWeight num={amount} />
             <OutputCost cost={cost} />

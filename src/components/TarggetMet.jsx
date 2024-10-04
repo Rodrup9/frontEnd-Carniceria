@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { MetContext } from "./context/metContext";
 
-export const TarggetMet = ( {met:{ id, image, name, price} } ) => {
+export const TarggetMet = ( {met:{ id, imagen, nombre, precio_de_venta} } ) => {
 
     const [clase, setClase] = useState(['targgetMet']);
     const onSelect = (event) => {
@@ -15,19 +15,19 @@ export const TarggetMet = ( {met:{ id, image, name, price} } ) => {
         onSelect();
         setscreenMet(false);
         setNoteProduct({
-            name,
-            price,
+            nombre,
+            precio_de_venta,
             des: 0,
             id,
         })
     }
 
     return (
-        <div key={name} className={`${clase[0]} ${clase[1]} `} 
+        <div key={nombre} className={`${clase[0]} ${clase[1]} `} 
             onClick={ hanldeSelect } >
-            <img src={image} alt={name} />
-            <h2> { name } </h2>
-            <p> ${ price } <span> x kg </span> </p>
+            <img src={imagen} alt={nombre} />
+            <h2> { nombre } </h2>
+            <p> ${ precio_de_venta } <span> x kg </span> </p>
         </div>
     )
 }
