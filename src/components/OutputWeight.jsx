@@ -5,12 +5,10 @@ import { useNewSeparate } from "../hooks";
 export const OutputWeight = ({ num }) => {
     const { first, second } = separatePoint( num );
     const { firstState, secondState, onNewValue } = useNewSeparate( first, second );
-
     useEffect(() => {
         onNewValue(num);
     }, [num])
     
-
     return (
         <div className="outputWeightBody outputBody">
             <div className="outputWeight output">

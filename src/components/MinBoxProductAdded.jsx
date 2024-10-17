@@ -7,9 +7,11 @@ export const MinBoxProductAdded = ({ data }) => {
 
   const onDelete = () => {
     const res = products.filter( product => product?.id !== data?.id );
+    localStorage.setItem('products', JSON.stringify(res));
     
-    setTotal( total - parseFloat(data?.cost));
+    const newTotal = (( total - parseFloat(data?.cost) ) >= 0 ) ? total - parseFloat(data?.cost) : 0.00;
 
+    setTotal( newTotal );
     setProducts( res );
   }
 

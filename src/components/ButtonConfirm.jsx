@@ -14,8 +14,10 @@ export const ButtonConfirm = ({label}) => {
       return;
     }; 
 
-    setProducts([ { id: new Date().getTime(), amount, cost, name: noteProduct.name }, ...products]);
-    setTotal( total + parseFloat(cost));
+    setProducts([ { id: new Date().getTime(), amount, precio_de_venta, name: noteProduct.nombre }, ...products]);
+    localStorage.setItem('products', JSON.stringify(products));
+    console.log(parseFloat(total) + parseFloat(cost));
+    setTotal( parseFloat(total) + parseFloat(cost) );
     setCost(0.00);
     setNoteProduct({ name: '', des: 0, price: 0.00 });
   }

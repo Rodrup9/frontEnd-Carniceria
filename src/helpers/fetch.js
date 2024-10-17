@@ -11,9 +11,9 @@ export const PesoComponent = () => {
   useEffect(() => {
     const connectSocket = () => {
       try {
-        socketRef.current = io('http://127.0.0.1:8765', {
+        socketRef.current = io('http://localhost:8765', {
           transports: ['websocket', 'polling'],
-          reconnection: false, // Disable default reconnection to handle manually
+          reconnection: true,
         });
 
         socketRef.current.on('connect', () => {

@@ -27,7 +27,7 @@ export const TarggetMet = ( {met:{ id, imagen, nombre, precio_de_venta} } ) => {
             onClick={ hanldeSelect } >
             <img src={imagen} alt={nombre} />
             <h2> { nombre } </h2>
-            <p> ${ precio_de_venta } <span> x kg </span> </p>
+            <p> ${ parseFloat(precio_de_venta) } <span> x kg </span> </p>
         </div>
     )
 }
