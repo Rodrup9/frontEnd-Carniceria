@@ -21,9 +21,8 @@ export const NoteMet = () => {
 
     useEffect(() => {
         setCost( cal(amount, noteProduct.price) );
-        console.log('hshshshgdggggg',noteProduct.price);
         
-    }, [noteProduct])
+    }, [amount])
     
 
     return (
@@ -31,9 +30,9 @@ export const NoteMet = () => {
 
             <PesoComponent />
             <OutputWeight num={amount} />
-            <OutputCost cost={parseFloat(cost)} />{cost}
+            <OutputCost cost={cost} />
             <OutputDetails note={noteProduct} />
-            <OutputTotal total={parseFloat(total)} />
+            <OutputTotal total={total} />
             <div className="noteMetOrder">
                 <p> Orden: { 'order' } </p>
             </div>

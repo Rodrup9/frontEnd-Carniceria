@@ -20,7 +20,6 @@ const init = () => {
 export const MetProvider = ({ children }) => {
 
     const { productKg, productPiece } = shows();
-    console.log(productKg)
 
     const [screenMet, setscreenMet] = useState(false);
 

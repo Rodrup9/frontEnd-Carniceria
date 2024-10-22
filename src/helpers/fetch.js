@@ -22,7 +22,6 @@ export const PesoComponent = () => {
         });
 
         socketRef.current.on('message', (data) => {
-          console.log(data);
           setAmount(data.weight);
         });
 

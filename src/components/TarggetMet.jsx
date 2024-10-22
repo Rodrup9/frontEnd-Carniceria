@@ -16,7 +16,7 @@ export const TarggetMet = ( {met:{ id, imagen, nombre, precio_de_venta} } ) => {
         setscreenMet(false);
         setNoteProduct({
             nombre,
-            precio_de_venta,
+            price: precio_de_venta,
             des: 0,
             id,
         })
