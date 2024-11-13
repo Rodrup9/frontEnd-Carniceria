@@ -13,8 +13,7 @@ export const ButtonConfirm = ({label}) => {
       addAlert('No hay nada que agregar', 'alert-yellow');
       return;
     }
-
-    setProducts([ { id: new Date().getTime(), amount, price,setAmount,cost, name: noteProduct.nombre }, ...products]);
+    setProducts([ { id: noteProduct.id, amount, price,setAmount,cost, name: noteProduct.nombre }, ...products]);
     localStorage.setItem('products', JSON.stringify(products));
     console.log(parseFloat(total) + parseFloat(cost));
     setTotal( parseFloat(total) + parseFloat(cost) );

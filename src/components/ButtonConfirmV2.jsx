@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { MetContext } from "./context/metContext";
 import { useAlerts } from "../hooks/useAlerts";
+import  axios  from "axios";
 
 export const ButtonConfirmV2 = ({label}) => {
 
@@ -16,21 +17,31 @@ export const ButtonConfirmV2 = ({label}) => {
     }; 
 
     setLoading(true);
+    console.log(products);
 
-    const response = await fetch('url', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        order: 'order',
-        products,
-      }),
-   });
+    const productos = products.map(item => {
+      return {
+        id: item.id,
+        peso: item.amount
+  
+      }
+    })
+    const response = await axios.post('http://127.0.0.1:8000/api/venta',{balanza: 1, productos})
+    console.log(response);
+    
 
-   await new Promise( resolve => setTimeout(resolve, 500) );
+  //   const response = await fetch('http://127.0.0.1:8000/api/venta', {
+  //     method: 'POST',
+  //     headers: {
+  //         'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       order: 'order',
+  //       products,
+  //     }),
+  //  });
 
-   if ( !response.ok ) {
+   if ( response?.status != 200  ) {
     setLoading(false);
     addAlert('Error al enviar la orden', 'alert-red')
     return;

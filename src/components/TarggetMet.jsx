@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { MetContext } from "./context/metContext";
 
-export const TarggetMet = ( {met:{ id, imagen, nombre, precio_de_venta} } ) => {
+export const TarggetMet = ( {met:{ id, imagen, nombre, precio_de_venta, filter, peso} } ) => {
 
     const [clase, setClase] = useState(['targgetMet']);
     const onSelect = (event) => {
@@ -27,7 +27,7 @@ export const TarggetMet = ( {met:{ id, imagen, nombre, precio_de_venta} } ) => {
             onClick={ hanldeSelect } >
             <img src={imagen} alt={nombre} />
             <h2> { nombre } </h2>
-            <p> ${ parseFloat(precio_de_venta) } <span> x kg </span> </p>
+            <p> ${ parseFloat(peso ? precio_de_venta * peso : precio_de_venta) } { peso && (<span> <br /> <strong> {peso} kg </strong>  </span>)} </p>
         </div>
     )
 }

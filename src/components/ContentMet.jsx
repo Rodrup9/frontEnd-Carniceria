@@ -5,10 +5,9 @@ import { MetContext } from "./context/metContext";
 export const ContentMet = () => {
     // const [first, setfirst] = useState(second)
     const { kg, piece, filter, show, setShow } = useContext( MetContext );
-    console.log(kg)
 
     useEffect(() => {
-
+        console.log({piece, kg});
         if ( filter === 'one' ) {
             setShow(kg)
         } else if ( filter === 'two' ) {
@@ -16,6 +15,7 @@ export const ContentMet = () => {
         } else {
             setShow(kg)
         }
+
         
     }, [filter])
     
@@ -32,7 +32,7 @@ export const ContentMet = () => {
                     <CloseX />
                 </div>
                 <div className="mets">
-                    { show.map( item => <TarggetMet key={ item.id } met={item} />) }
+                { show.map((item, index) => (<TarggetMet key={`${item.id}-${index}`} met={item} filter={filter}/>))}                
                 </div>
             </div>
         </div>
