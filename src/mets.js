@@ -1,11 +1,24 @@
 import axios from 'axios';
+import { supabase } from './connection';
 
 // Obtener los datos de los productos desde la API
-const data = await axios.get('http://127.0.0.1:8000/api/producto');
-// const data = await axios.get('http://192.168.10.113:8000/api/producto');
+// const data = await axios.get('http://127.0.0.1:8000/api/producto');
+// const data = await axios.get('http://192.168.10.112:8000/api/producto');
+
+const fetch = async () => {
+    const product = await supabase
+    .from('productos')
+    .select()
+
+    console.log(product);
+
+    return product.data;
+    
+}
+
 
 // Lista de todos los productos
-export const mets = data.data.data;
+export const mets = await fetch();
 
 // Filtrar los productos que pueden ser vendidos por piezas
 export const Piece = mets.filter(product => product.piezas === true);

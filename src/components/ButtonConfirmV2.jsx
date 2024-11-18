@@ -4,6 +4,7 @@ import { useAlerts } from "../hooks/useAlerts";
 import  axios  from "axios";
 
 export const ButtonConfirmV2 = ({label}) => {
+  
 
   const { setProducts, products, noteProduct, setLoading, setTotal } = useContext( MetContext );
 
@@ -26,8 +27,8 @@ export const ButtonConfirmV2 = ({label}) => {
   
       }
     })
-    const response = await axios.post('http://127.0.0.1:8000/api/venta',{balanza: 1, productos})
-    console.log(response);
+    // const response = await axios.post('http://127.0.0.1:8000/api/venta',{balanza: 1, productos})
+    // console.log(response);
     
 
   //   const response = await fetch('http://127.0.0.1:8000/api/venta', {
@@ -41,15 +42,18 @@ export const ButtonConfirmV2 = ({label}) => {
   //     }),
   //  });
 
-   if ( response?.status != 200  ) {
+  //  if ( response?.status != 200  ) {
+  //   setLoading(false);
+  //   addAlert('Error al enviar la orden', 'alert-red')
+  //   return;
+  //  };
+  setLoading(true);
+
+  setTimeout(() => {
     setLoading(false);
-    addAlert('Error al enviar la orden', 'alert-red')
-    return;
-   };
+  }, 1000);
 
-   setLoading(false);
-
-   setProducts([]);
+  setProducts([]);
 
    setTotal(0);
 
