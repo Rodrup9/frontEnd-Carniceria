@@ -10,7 +10,7 @@ const cal = (amount, price) => {
 
 export const NoteMet = () => {
     
-    const { noteProduct, total, amount, cost, setCost } = useContext(MetContext);
+    const { noteProduct, total, amount, cost, setCost,new_product } = useContext(MetContext);
 
     const { mostrarPeso } = shows();
 
@@ -21,8 +21,10 @@ export const NoteMet = () => {
 
     useEffect(() => {
         setCost( cal(amount, noteProduct.price) );
+        console.log(cost,amount,noteProduct, 'prueba1');
         
-    }, [amount])
+        
+    }, [new_product])
     
 
     return (
@@ -30,9 +32,9 @@ export const NoteMet = () => {
 
             <PesoComponent />
             <OutputWeight num={amount} />
-            <OutputCost cost={cost} />
+            <OutputCost cost={parseFloat(cost)} />
             <OutputDetails note={noteProduct} />
-            <OutputTotal total={total} />
+            <OutputTotal total={parseFloat(total)} />
             <div className="noteMetOrder">
                 <p> Orden: { 'order' } </p>
             </div>

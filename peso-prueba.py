@@ -2,80 +2,96 @@ import serial
 import asyncio
 import socketio
 from aiohttp import web
-import random  # Importamos random para simular pesos
 
 # Configuración del puerto serial
 port = 'COM4'  # Reemplaza con el puerto correcto
 baudrate = 9600  # Velocidad en baudios según el manual
-timeout = 0.5  # Timeout para la lectura
+timeout = 0.3  # Timeout aumentado para la lectura
 
 # Crear una instancia de Socket.IO server
 sio = socketio.AsyncServer(cors_allowed_origins='*')
 app = web.Application()
 sio.attach(app)
 
+# Definir la función index para la ruta '/'
+async def index(request):
+    return web.Response(text="Servidor WebSocket en ejecución")
+
 async def send_weight():
     try:
         while True:
             try:
-                # SIMULACIÓN: Generamos un peso aleatorio entre 0 y 100 kg
-                weight = round(random.uniform(0, 100), 2)  
-                # weight = round(1.87)  
-                print(f"Peso simulado: {weight}")
+                if not ser.is_open:
+                    try:
+                        ser.open()
+                        print(f"Reconexión serial establecida en el puerto {port}")
+                    except serial.SerialException as e:
+                        print(f"No se pudo reconectar el puerto {port}: {e}")
+                        await asyncio.sleep(5)
+                        continue
+                    except Exception as e:
+                        print(f"Error inesperado al intentar reconectar el puerto: {e}")
+                        await asyncio.sleep(5)
+                        continue
 
-                # Enviar el peso simulado
-                message = {'weight': weight}
-                await sio.emit('message', message)
-                print(f"Peso enviado: {weight}")
+                # Enviar el comando para solicitar el peso
+                print("Enviando comando: b'P\\r\\n'")
+                ser.write(b'P\r\n')  # Usa "P" seguido de \r\n
 
-                # Disminuir el tiempo de espera antes de la próxima simulación
-                await asyncio.sleep(1)  # Espera 1 segundo antes de enviar otro peso
+                # Leer la respuesta de la báscula
+                line = ser.readline().decode('utf-8').strip()
+                print(f"Respuesta recibida de la báscula: '{line}'")
 
-                # Comentar las líneas siguientes para deshabilitar la lectura del puerto serial
-                # if not ser.is_open:
-                #     try:
-                #         ser.open()
-                #         print(f"Reconexión serial establecida en el puerto {port}")
-                #     except serial.SerialException as e:
-                #         print(f"No se pudo reconectar el puerto {port}: {e}")
-                #         await asyncio.sleep(5)
-                #         continue
-                #     except Exception as e:
-                #         print(f"Error inesperado al intentar reconectar el puerto: {e}")
-                #         await asyncio.sleep(5)
-                #         continue
+                if line:
+                    try:
+                        # Extraer el valor numérico
+                        weight_str = line.split()[0]  # Suponemos que el peso es el primer elemento
+                        weight = float(weight_str)
 
-                # ser.write(b'p')
-                # print("Comando enviado para solicitar el peso")
-                # line = ser.readline().decode('utf-8').strip()
-                # print(f"Respuesta recibida de la báscula: '{line}'")
+                        # Enviar el peso
+                        message = {'weight': weight}
+                        await sio.emit('message', message)
+                        print(f"Peso enviado: {weight}")
+                    except ValueError:
+                        print(f"Error al convertir el peso: '{line}' no es un número válido")
+                    except Exception as e:
+                        print(f"Error inesperado al procesar el peso: {e}")
+                else:
+                    # Enviar cero si no se recibió un peso válido
+                    message = {'weight': 0}
+                    await sio.emit('message', message)
+                    print("Peso enviado: 0")
 
-                # if line:
-                #     try:
-                #         weight_str = line.split()[0]
-                #         weight = float(weight_str)
-                #         message = {'weight': weight}
-                #         await sio.emit('message', message)
-                #         print(f"Peso enviado: {weight}")
-                #     except ValueError:
-                #         print(f"Error al convertir el peso: '{line}' no es un número válido")
-                #     except Exception as e:
-                #         print(f"Error inesperado al procesar el peso: {e}")
-                # else:
-                #     message = {'weight': 0}
-                #     await sio.emit('message', message)
-                #     print("Peso enviado: 0")
-
+            except serial.SerialException as e:
+                print(f"Error al leer o escribir en el puerto serial: {e}")
+                await asyncio.sleep(5)
+                if ser.is_open:
+                    ser.close()
+                    print("Conexión serial cerrada para liberar el puerto")
+            except PermissionError as e:
+                print(f"Permiso denegado para acceder al puerto: {e}")
+                if ser.is_open:
+                    ser.close()
+                    print("Puerto cerrado debido a un error de permisos")
+                await asyncio.sleep(5)
             except Exception as e:
-                print(f"Error inesperado durante la simulación: {e}")
-                await asyncio.sleep(5)  # Esperar antes de reintentar
+                print(f"Error inesperado durante la comunicación serial: {e}")
+                if ser.is_open:
+                    ser.close()
+                    print("Puerto cerrado debido a un error inesperado")
+                await asyncio.sleep(5)
+
+            # Disminuir el tiempo de espera antes de la próxima solicitud
+            await asyncio.sleep(0.5)
 
     except Exception as e:
         print(f'Error general en send_weight: {e}')
     finally:
-        if 'ser' in globals() and ser.is_open:
+        if ser.is_open:
             ser.close()
             print("Conexión serial cerrada")
+
+app.router.add_get('/', index)
 
 # Manejo de reconexión de WebSocket
 @sio.event
@@ -96,11 +112,8 @@ app.on_startup.append(start_background_tasks)
 
 if __name__ == '__main__':
     try:
-        # Comentamos la inicialización del puerto serial
-        # ser = serial.Serial(port, baudrate, bytesize=serial.EIGHTBITS,
-        #                     parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=timeout)
-        # print(f"Conexión serial establecida en el puerto {port}")
-        pass  # Evitar que falle por la falta de la báscula
+        ser = serial.Serial(port, baudrate, bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=timeout)
+        print(f"Conexión serial establecida en el puerto {port}")
     except serial.SerialException as e:
         print(f"No se pudo abrir el puerto {port}: {e}")
         exit()

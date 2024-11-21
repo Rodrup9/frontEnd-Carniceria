@@ -310,6 +310,12 @@ input:focus {
     font-weight: 600;
 }
 
+.output h3 span{
+    font-size: 55px;
+    line-height: 1;  
+    font-weight: 600;
+}
+
 .output h2 {
     font-size: 35px;
     font-weight: 600;
@@ -337,9 +343,9 @@ input:focus {
 }
 
 .outputDetails span, .outputDetails p {
-    color: #A6A3A3;
-    font-size: 16px;
-    font-weight: 400;
+    color: black;
+    font-size: 25px;
+    font-weight: 600;
 }
 
 .outputTotal div {

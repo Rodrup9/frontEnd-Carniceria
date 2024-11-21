@@ -45,8 +45,10 @@ export const MetProvider = ({ children }) => {
 
     const [filter, setFilter] = useState('one');
 
+    const [new_product, setNewProduct] = useState(0);
+
     return (
-        <MetContext.Provider value={{ filter, setFilter, show, setShow, piece, setPiece, kg, setKg, alert, setAlert, loading, setLoading, screenMet, setscreenMet, products, setProducts, noteProduct, setNoteProduct, total, setTotal, amount, setAmount, cost, setCost }}>
+        <MetContext.Provider value={{new_product, setNewProduct ,filter, setFilter, show, setShow, piece, setPiece, kg, setKg, alert, setAlert, loading, setLoading, screenMet, setscreenMet, products, setProducts, noteProduct, setNoteProduct, total, setTotal, amount, setAmount, cost, setCost }}>
             { children }
         </MetContext.Provider>
     )
