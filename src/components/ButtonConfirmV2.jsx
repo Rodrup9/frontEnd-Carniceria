@@ -27,7 +27,7 @@ export const ButtonConfirmV2 = ({label}) => {
   
       }
     })
-    // const response = await axios.post('http://127.0.0.1:8000/api/venta',{balanza: 1, productos})
+    const response = await axios.post('http://192.168.0.101:8000/api/venta',{balanza: 1, productos})
     // console.log(response);
     
 
@@ -42,21 +42,21 @@ export const ButtonConfirmV2 = ({label}) => {
   //     }),
   //  });
 
-  //  if ( response?.status != 200  ) {
-  //   setLoading(false);
-  //   addAlert('Error al enviar la orden', 'alert-red')
-  //   return;
-  //  };
-  setLoading(true);
-
-  setTimeout(() => {
+   if ( response?.status != 200  ) {
     setLoading(false);
-  }, 1000);
+    addAlert('Error al enviar la orden', 'alert-red')
+    return;
+   };
+  // setLoading(true);
+
+  // setTimeout(() => {
+  //   setLoading(false);
+  // }, 1000);
 
   setProducts([]);
 
    setTotal(0);
-
+   setLoading(false);
    return;
   }
 

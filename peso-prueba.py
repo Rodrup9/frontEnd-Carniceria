@@ -6,7 +6,7 @@ from aiohttp import web
 # Configuración del puerto serial
 port = 'COM4'  # Reemplaza con el puerto correcto
 baudrate = 9600  # Velocidad en baudios según el manual
-timeout = 0.3  # Timeout aumentado para la lectura
+timeout = 0.1  # Timeout aumentado para la lectura
 
 # Crear una instancia de Socket.IO server
 sio = socketio.AsyncServer(cors_allowed_origins='*')
