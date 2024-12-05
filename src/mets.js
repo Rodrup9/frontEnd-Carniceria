@@ -1,15 +1,20 @@
 import axios from 'axios';
+import { supabase } from './connection';
 
 // Obtener los datos de los productos desde la API
 const fetchProducts = async () => {
     try {
-        const response = await axios.get('http://192.168.0.101:8000/api/producto');
-        const mets = response.data.data;
+        const {data, error} = await supabase.from('productos').select();
+        console.log(data);
+        
+        const mets = data;
+        // const response = await axios.get('http://192.168.0.101:8000/api/producto');
+        // const mets = response.data.data;
 
-        // Actualizar la URL de las imágenes
-        mets.forEach(product => {
-            product.imagen = product.imagen.replace('127.0.0.1', '192.168.0.101');
-        });
+        // // Actualizar la URL de las imágenes
+        // mets.forEach(product => {
+        //     product.imagen = product.imagen.replace('127.0.0.1', '192.168.0.101');
+        // });
 
         // Filtrar los productos que pueden ser vendidos por piezas
         const Piece = mets.filter(product => product.piezas === true);
