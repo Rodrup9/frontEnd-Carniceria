@@ -4,6 +4,9 @@ import { MetContext } from "./context/metContext";
 import { PesoComponent } from "../helpers";
 import { shows } from "../helpers";
 
+
+
+
 const cal = (amount, price) => {
     return (amount * price).toFixed(2);
 }
@@ -20,11 +23,13 @@ export const NoteMet = () => {
     
 
     useEffect(() => {
-        setCost( cal(amount, noteProduct.price) );
-        console.log(amount, 'probahsah');
-        
-        
-    }, [new_product,amount])
+        console.log("noteProduct.price:", noteProduct.price, "amount:", amount);
+        if (noteProduct?.price && amount) {
+            setCost(cal(amount, noteProduct.price));
+        } else {
+            setCost(0); 
+        }
+    }, [noteProduct, amount]);
     
     
 
