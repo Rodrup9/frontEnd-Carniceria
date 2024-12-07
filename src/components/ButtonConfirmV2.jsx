@@ -3,8 +3,10 @@ import { MetContext } from "./context/metContext";
 import { useAlerts } from "../hooks/useAlerts";
 import  axios  from "axios";
 import { supabase } from "../connection";
+import { productos_venta } from '../hooks/products_sale'
 
 export const ButtonConfirmV2 = ({label}) => {
+  
   
 
   const { setProducts, products, noteProduct, setLoading, setTotal } = useContext( MetContext );
@@ -12,6 +14,9 @@ export const ButtonConfirmV2 = ({label}) => {
   const { addAlert } = useAlerts();
 
   const sendOrder = async () => {
+
+    let total_venta = 0;
+    let venta = {};
     if (products.length === 0 || noteProduct?.id) {
       addAlert('Agrega productos para poder enviarlos', 'alert-yellow');
       return;
@@ -19,15 +24,13 @@ export const ButtonConfirmV2 = ({label}) => {
   
     setLoading(true);
   
-    // Preparar los productos para la inserción
     const productos = products.map(item => ({
       id: item.id,
       peso: item.amount,
     }));
   
     try {
-      // Insertar la venta
-      const { data: venta, error: ventaError } = await supabase
+      const { data, error} = await supabase
         .from('ventas')
         .insert({
           created_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
@@ -38,53 +41,29 @@ export const ButtonConfirmV2 = ({label}) => {
         })
         .select()
         .single();
+        venta = data;
   
-      if (ventaError) {
-        throw ventaError;
+      if (error) {
+        
+        throw error;
       }
   
-      let total = 0;
   
-      // Insertar productos en producto_ventas
       for (const producto of productos) {
-        const { data: productoOriginal, error: productoError } = await supabase
+        const { data, error } = await supabase
           .from('productos')
           .select('*')
           .eq('id', producto.id)
           .single();
-  
-        if (productoError) {
-          throw productoError;
+
+          const producto_venta = await productos_venta(data, producto.peso, venta)
+          .then(
+
+          )
+          
+          total_venta += producto_venta.total;
         }
-  
-        const productoTotal = producto.peso * productoOriginal.precio_de_venta;
-  
-        const { error: productoVentaError } = await supabase
-          .from('producto_ventas')
-          .insert({
-            producto_id: productoOriginal.id,
-            venta_id: venta.id,
-            precio: productoOriginal.precio_de_venta,
-            peso: producto.peso,
-            total: productoTotal,
-          });
-  
-        if (productoVentaError) {
-          throw productoVentaError;
-        }
-  
-        total += productoTotal;
-      }
-  
-      // Actualizar el total de la venta
-      const { error: updateVentaError } = await supabase
-        .from('ventas')
-        .update({ total })
-        .eq('id', venta.id);
-  
-      if (updateVentaError) {
-        throw updateVentaError;
-      }
+    console.log(total_venta, 'el total de la venta es');
   
       addAlert('Venta realizada con éxito', 'alert-green');
       setProducts([]);
@@ -93,7 +72,10 @@ export const ButtonConfirmV2 = ({label}) => {
       console.error('Error al procesar la venta:', error);
       addAlert('Error al enviar la orden', 'alert-red');
     } finally {
-      setLoading(false);
+      const {data, error} = await supabase.from('ventas').update({total: total_venta}).eq('id', venta.id).select();
+      if (data) {
+        setLoading(false)
+      }
     }
   };
 

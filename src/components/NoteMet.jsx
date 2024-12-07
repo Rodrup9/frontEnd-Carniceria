@@ -21,10 +21,11 @@ export const NoteMet = () => {
 
     useEffect(() => {
         setCost( cal(amount, noteProduct.price) );
-        console.log(cost,amount,noteProduct, 'prueba1');
+        console.log(amount, 'probahsah');
         
         
-    }, [new_product])
+    }, [new_product,amount])
+    
     
 
     return (
