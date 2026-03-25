@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { supabase } from './connection';
+import { supabase } from './supabaseClient';
 
 // Obtener los datos de los productos desde la API
 const fetchProducts = async () => {
     try {
-        const {data, error} = await supabase.from('productos').select();
+        const { data, error } = await supabase.from('productos').select();
         console.log(data);
-        
+
         const mets = data;
         // const response = await axios.get('http://192.168.0.101:8000/api/producto');
         // const mets = response.data.data;
@@ -41,5 +41,4 @@ const fetchProducts = async () => {
 };
 
 // Exportar los datos obtenidos
-const { mets, metsPiece } = await fetchProducts();
-export { mets, metsPiece };
+export { fetchProducts };

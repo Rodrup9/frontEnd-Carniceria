@@ -19,4 +19,6 @@ export * from './MainMain';
 export * from './ButtonConfirmV2';
 export * from './ContentAlerts';
 export * from './Alert';
-export * from './ButtonDouble'
+export * from './ButtonDouble';
+export * from './Login';
+export * from './ButtonLogout';

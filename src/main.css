@@ -510,3 +510,122 @@ input:focus {
     color: #ffffff;
     flex: 1.5;
 }
+
+/* Login Styles */
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #267365 0%, #08070A 100%);
+    padding: 20px;
+}
+
+.loginBox {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+}
+
+.loginBox h2 {
+    color: #08070A;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.loginField {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.loginField label {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.loginField input {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1.5px solid #ddd;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.loginField input:focus {
+    border-color: #267365;
+    box-shadow: 0 0 0 4px rgba(38, 115, 101, 0.1);
+}
+
+.rememberMe {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #444;
+}
+
+.rememberMe input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.btnLogin {
+    background: #267365;
+    color: white;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btnLogin:hover {
+    background: #1d5a4f;
+    transform: translateY(-2px);
+}
+
+.btnLogin:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.loginError {
+    color: #BA2222;
+    background: rgba(186, 34, 34, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Logout Button */
+.buttonLogout {
+    border: 1.5px solid #BA2222;
+    background-color: transparent;
+    color: #BA2222;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.buttonLogout:hover {
+    background-color: #BA2222;
+    color: #ffffff;
+}

@@ -1,8 +1,6 @@
-import { mets, metsPiece } from "../mets"
-
 export const shows = () => {
-    const productKg = mets;
-    const productPiece = metsPiece;
+    const productKg = [];
+    const productPiece = [];
 
     const mostrarPeso = () => {
         // Lógica para mostrar el peso

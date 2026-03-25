@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MetContext } from "./context/metContext";
 import { useAlerts } from "../hooks/useAlerts";
-import { supabase } from "../connection";
+import { supabase } from "../supabaseClient";
 import { productos_venta } from "../hooks/products_sale";
 
 export const ButtonConfirmV2 = ({ label }) => {
