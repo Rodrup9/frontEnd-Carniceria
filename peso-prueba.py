@@ -2,6 +2,7 @@ import serial
 import asyncio
 import socketio
 from aiohttp import web
+import re
 
 # Configuración del puerto serial
 port = 'COM3'  # Reemplaza con el puerto correcto
@@ -44,9 +45,15 @@ async def send_weight():
 
                 if line:
                     try:
-                        # Extraer el valor numérico
-                        weight_str = line.split()[0]  # Suponemos que el peso es el primer elemento
-                        weight = float(weight_str)
+                        # Eliminar espacios para evitar problemas si la báscula envía algo como "1 0.50"
+                        line_cleaned = line.replace(" ", "")
+                        # Buscar el primer número en la cadena (soporta decimales opcionales)
+                        match = re.search(r'-?\d+(\.\d+)?', line_cleaned)
+                        
+                        if not match:
+                            raise ValueError(f"No se encontró un número válido en: '{line}'")
+                            
+                        weight = float(match.group())
 
                         # Enviar el peso
                         message = {'weight': weight}
